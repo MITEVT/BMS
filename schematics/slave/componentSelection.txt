@@ -1,4 +1,16 @@
-Microcontroller: *todo* by jeoy
+Microcontroller: 
+	requirements:
+		Minimum 16 pins
+		8-bit AVR
+		Minimum 4 ADC Channels
+		UART
+	options: 
+		ATtiny87: http://octopart.com/partsearch#search/requestData&q=attiny87
+	
+		Has 16 programable I/O lines
+		Same power down/low power modes as ATtiny85
+
+		
 
 Voltage Regulator:
 	requirements:
