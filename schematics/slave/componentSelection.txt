@@ -1,0 +1,12 @@
+Microcontroller: *todo* by jeoy
+
+Voltage Regulator:
+	requirements:
+		Low quiecent current
+		No need for low dropout
+	options:
+		MCP130T-450I/TT: http://octopart.com/mcp130t-450i%2Ftt-microchip-91000
+		
+	
+
+Microcontroller Supervisory circuit?
