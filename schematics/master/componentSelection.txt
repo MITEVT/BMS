@@ -1,0 +1,15 @@
+Microcontroller:
+	requirements:
+		IO for optoisolated Serial coms
+		Multiplexed serial coms
+		Some other protocol?
+			SPI? (using 4 lines?)
+			if SPI use multiplexer on the MISO lines
+
+SPI MISO multiplexer 
+
+DC->DC to power this thing
+
+USB/SPI/I2C out for user interface
+
+How many groups of 4 do we want to manage?
