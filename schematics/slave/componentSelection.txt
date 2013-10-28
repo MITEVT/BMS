@@ -3,12 +3,14 @@ Microcontroller:
 		Minimum 16 pins
 		8-bit AVR
 		Minimum 4 ADC Channels
-		UART
+		SPI
 	options: 
-		ATtiny87: http://octopart.com/partsearch#search/requestData&q=attiny87
+		ATtiny261A: http://octopart.com/partsearch#search/requestData&q=attiny261A
 	
 		Has 16 programable I/O lines
-		Same power down/low power modes as ATtiny85
+		4 sleep modes
+		In-System programmable via SPI Port
+		Cheaper than attiny87
 
 		
 
