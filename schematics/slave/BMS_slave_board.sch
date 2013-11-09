@@ -1123,13 +1123,19 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="-2.54" y="-2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="VDD" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
-<symbol name="VSS">
-<wire x1="-1.27" y1="1.905" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="1.27" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0" y1="-1.27" x2="1.27" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="1.905" x2="0" y2="-1.27" width="0.254" layer="94"/>
-<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="VSS" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+<symbol name="V+">
+<wire x1="0.889" y1="-1.27" x2="0" y2="0.127" width="0.254" layer="94"/>
+<wire x1="0" y1="0.127" x2="-0.889" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-0.889" y1="-1.27" x2="0.889" y2="-1.27" width="0.254" layer="94"/>
+<text x="-2.54" y="-2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="V+" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
+<symbol name="V-">
+<wire x1="-0.889" y1="1.27" x2="0" y2="-0.127" width="0.254" layer="94"/>
+<wire x1="0" y1="-0.127" x2="0.889" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-0.889" y1="1.27" x2="0.889" y2="1.27" width="0.254" layer="94"/>
+<text x="-5.08" y="2.54" size="1.778" layer="96" rot="R270">&gt;VALUE</text>
+<pin name="V-" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1172,10 +1178,23 @@ We've spent an enormous amount of time creating and checking these footprints an
 </device>
 </devices>
 </deviceset>
-<deviceset name="VSS" prefix="VSS">
+<deviceset name="V+" prefix="P+">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
-<gate name="G$1" symbol="VSS" x="0" y="0"/>
+<gate name="1" symbol="V+" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="V-" prefix="P-">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="V-" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -8544,20 +8563,20 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <part name="R37" library="rcl" deviceset="R-US_" device="0204/7"/>
 <part name="R40" library="rcl" deviceset="R-US_" device="0204/7"/>
 <part name="R41" library="rcl" deviceset="R-US_" device="0204/7"/>
-<part name="VSS1" library="supply1" deviceset="VSS" device=""/>
-<part name="VSS2" library="supply1" deviceset="VSS" device=""/>
 <part name="+3V6" library="supply1" deviceset="+3V3" device=""/>
 <part name="R38" library="rcl" deviceset="R-US_" device="0204/7"/>
 <part name="GND21" library="supply1" deviceset="GND" device=""/>
 <part name="R39" library="rcl" deviceset="R-US_" device="0204/7"/>
-<part name="VSS3" library="supply1" deviceset="VSS" device=""/>
 <part name="+3V8" library="supply1" deviceset="+3V3" device=""/>
 <part name="R42" library="rcl" deviceset="R-US_" device="0204/7"/>
 <part name="GND22" library="supply1" deviceset="GND" device=""/>
 <part name="R43" library="rcl" deviceset="R-US_" device="0204/7"/>
-<part name="VSS4" library="supply1" deviceset="VSS" device=""/>
 <part name="GND23" library="supply1" deviceset="GND" device=""/>
-<part name="VDD3" library="supply1" deviceset="VDD" device=""/>
+<part name="P+1" library="supply1" deviceset="V+" device=""/>
+<part name="P-1" library="supply1" deviceset="V-" device=""/>
+<part name="P-2" library="supply1" deviceset="V-" device=""/>
+<part name="P-3" library="supply1" deviceset="V-" device=""/>
+<part name="P-4" library="supply1" deviceset="V-" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8659,22 +8678,22 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <instance part="R37" gate="G$1" x="-187.96" y="99.06" rot="R180"/>
 <instance part="R40" gate="G$1" x="-149.86" y="152.4"/>
 <instance part="R41" gate="G$1" x="-185.42" y="134.62" rot="R90"/>
-<instance part="VSS1" gate="G$1" x="-185.42" y="124.46"/>
-<instance part="VSS2" gate="G$1" x="-185.42" y="81.28"/>
 <instance part="+3V6" gate="G$1" x="-154.94" y="55.88"/>
 <instance part="R38" gate="G$1" x="-154.94" y="30.48" rot="R90"/>
 <instance part="GND21" gate="1" x="-154.94" y="20.32"/>
 <instance part="R39" gate="G$1" x="-187.96" y="48.26" rot="R180"/>
-<instance part="VSS3" gate="G$1" x="-185.42" y="30.48"/>
 <instance part="+3V8" gate="G$1" x="-154.94" y="7.62"/>
 <instance part="R42" gate="G$1" x="-154.94" y="-17.78" rot="R90"/>
 <instance part="GND22" gate="1" x="-154.94" y="-27.94"/>
 <instance part="R43" gate="G$1" x="-187.96" y="0" rot="R180"/>
-<instance part="VSS4" gate="G$1" x="-185.42" y="-17.78"/>
 <instance part="U$2" gate="G$2" x="-170.18" y="43.18" rot="R270"/>
 <instance part="U$2" gate="G$4" x="-170.18" y="-5.08" rot="R270"/>
 <instance part="GND23" gate="1" x="-154.94" y="132.08"/>
-<instance part="VDD3" gate="G$1" x="-185.42" y="160.02"/>
+<instance part="P+1" gate="1" x="-185.42" y="160.02"/>
+<instance part="P-1" gate="1" x="-185.42" y="124.46"/>
+<instance part="P-2" gate="1" x="-185.42" y="81.28"/>
+<instance part="P-3" gate="1" x="-185.42" y="30.48"/>
+<instance part="P-4" gate="1" x="-185.42" y="-17.78"/>
 </instances>
 <busses>
 </busses>
@@ -8877,19 +8896,9 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 </net>
 <net name="BAT-4" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="+V"/>
-<wire x1="50.8" y1="22.86" x2="50.8" y2="25.4" width="0.1524" layer="91"/>
-<label x="50.8" y="25.4" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="76.2" y1="132.08" x2="76.2" y2="134.62" width="0.1524" layer="91"/>
 <label x="76.2" y="134.62" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U2" gate="G$1" pin="+V"/>
-<wire x1="139.7" y1="30.48" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
-<label x="139.7" y="33.02" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="R22" gate="G$1" pin="1"/>
@@ -9354,10 +9363,14 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <pinref part="VDD2" gate="G$1" pin="VDD"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="CO"/>
-<wire x1="-180.34" y1="152.4" x2="-185.42" y2="152.4" width="0.1524" layer="91"/>
-<wire x1="-185.42" y1="152.4" x2="-185.42" y2="157.48" width="0.1524" layer="91"/>
-<pinref part="VDD3" gate="G$1" pin="VDD"/>
+<pinref part="U2" gate="G$1" pin="+V"/>
+<wire x1="139.7" y1="30.48" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
+<label x="139.7" y="33.02" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="+V"/>
+<wire x1="50.8" y1="22.86" x2="50.8" y2="25.4" width="0.1524" layer="91"/>
+<label x="50.8" y="25.4" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="MOSI" class="0">
@@ -9444,31 +9457,6 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <pinref part="U$2" gate="G$1" pin="A"/>
 <pinref part="R40" gate="G$1" pin="1"/>
 <wire x1="-160.02" y1="152.4" x2="-154.94" y2="152.4" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="VSS" class="0">
-<segment>
-<pinref part="R41" gate="G$1" pin="1"/>
-<pinref part="VSS1" gate="G$1" pin="VSS"/>
-<wire x1="-185.42" y1="129.54" x2="-185.42" y2="127" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$2" gate="G$3" pin="CA"/>
-<pinref part="VSS2" gate="G$1" pin="VSS"/>
-<wire x1="-180.34" y1="88.9" x2="-185.42" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="-185.42" y1="88.9" x2="-185.42" y2="83.82" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="VSS3" gate="G$1" pin="VSS"/>
-<wire x1="-180.34" y1="38.1" x2="-185.42" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="-185.42" y1="38.1" x2="-185.42" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$2" pin="CA"/>
-</segment>
-<segment>
-<pinref part="VSS4" gate="G$1" pin="VSS"/>
-<wire x1="-180.34" y1="-10.16" x2="-185.42" y2="-10.16" width="0.1524" layer="91"/>
-<wire x1="-185.42" y1="-10.16" x2="-185.42" y2="-15.24" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$4" pin="CA"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -9559,6 +9547,39 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <pinref part="R43" gate="G$1" pin="2"/>
 <wire x1="-193.04" y1="0" x2="-195.58" y2="0" width="0.1524" layer="91"/>
 <label x="-195.58" y="0" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="V+" class="0">
+<segment>
+<pinref part="U$2" gate="G$1" pin="CO"/>
+<wire x1="-180.34" y1="152.4" x2="-185.42" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="-185.42" y1="152.4" x2="-185.42" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="P+1" gate="1" pin="V+"/>
+</segment>
+</net>
+<net name="V-" class="0">
+<segment>
+<pinref part="R41" gate="G$1" pin="1"/>
+<wire x1="-185.42" y1="129.54" x2="-185.42" y2="127" width="0.1524" layer="91"/>
+<pinref part="P-1" gate="1" pin="V-"/>
+</segment>
+<segment>
+<pinref part="U$2" gate="G$3" pin="CA"/>
+<wire x1="-180.34" y1="88.9" x2="-185.42" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-185.42" y1="88.9" x2="-185.42" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="P-2" gate="1" pin="V-"/>
+</segment>
+<segment>
+<wire x1="-180.34" y1="38.1" x2="-185.42" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-185.42" y1="38.1" x2="-185.42" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$2" pin="CA"/>
+<pinref part="P-3" gate="1" pin="V-"/>
+</segment>
+<segment>
+<wire x1="-180.34" y1="-10.16" x2="-185.42" y2="-10.16" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$4" pin="CA"/>
+<wire x1="-185.42" y1="-10.16" x2="-185.42" y2="-15.24" width="0.1524" layer="91"/>
+<pinref part="P-4" gate="1" pin="V-"/>
 </segment>
 </net>
 </nets>
