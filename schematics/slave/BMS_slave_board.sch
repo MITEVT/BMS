@@ -8557,6 +8557,7 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <part name="R43" library="rcl" deviceset="R-US_" device="0204/7"/>
 <part name="VSS4" library="supply1" deviceset="VSS" device=""/>
 <part name="GND23" library="supply1" deviceset="GND" device=""/>
+<part name="VDD3" library="supply1" deviceset="VDD" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8673,6 +8674,7 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <instance part="U$2" gate="G$2" x="-170.18" y="43.18" rot="R270"/>
 <instance part="U$2" gate="G$4" x="-170.18" y="-5.08" rot="R270"/>
 <instance part="GND23" gate="1" x="-154.94" y="132.08"/>
+<instance part="VDD3" gate="G$1" x="-185.42" y="160.02"/>
 </instances>
 <busses>
 </busses>
@@ -9351,6 +9353,12 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <wire x1="-109.22" y1="114.3" x2="-109.22" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="VDD2" gate="G$1" pin="VDD"/>
 </segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="CO"/>
+<wire x1="-180.34" y1="152.4" x2="-185.42" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="-185.42" y1="152.4" x2="-185.42" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="VDD3" gate="G$1" pin="VDD"/>
+</segment>
 </net>
 <net name="MOSI" class="0">
 <segment>
@@ -9438,14 +9446,6 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 <wire x1="-160.02" y1="152.4" x2="-154.94" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$29" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="E"/>
-<pinref part="R41" gate="G$1" pin="2"/>
-<wire x1="-180.34" y1="142.24" x2="-185.42" y2="142.24" width="0.1524" layer="91"/>
-<wire x1="-185.42" y1="142.24" x2="-185.42" y2="139.7" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="VSS" class="0">
 <segment>
 <pinref part="R41" gate="G$1" pin="1"/>
@@ -9519,9 +9519,13 @@ Source: http://www.linear.com/pc/downloadDocument.do?navId=H0,C1,C1010,C1603,P12
 </net>
 <net name="MDO" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="CO"/>
-<wire x1="-180.34" y1="152.4" x2="-195.58" y2="152.4" width="0.1524" layer="91"/>
-<label x="-195.58" y="152.4" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="-193.04" y="142.24" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="U$2" gate="G$1" pin="E"/>
+<pinref part="R41" gate="G$1" pin="2"/>
+<wire x1="-185.42" y1="142.24" x2="-193.04" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="-180.34" y1="142.24" x2="-185.42" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="-185.42" y1="142.24" x2="-185.42" y2="139.7" width="0.1524" layer="91"/>
+<junction x="-185.42" y="142.24"/>
 </segment>
 </net>
 <net name="DO" class="0">
