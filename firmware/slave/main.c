@@ -23,7 +23,8 @@
 #define LIN_ENUM_CHECK_RESPONSE 0xCC
 
 unsigned char lin_id;
-unsigned char lin_enum_check_response[LEN_ENUM_CHECK] = {LIN_ENUM_CHECK_RESPONSE};  
+unsigned char lin_enum_check_response[LEN_ENUM_CHECK] = {LIN_ENUM_CHECK_RESPONSE}; 
+unsigned char lin_enum_check_response_dump[LEN_ENUM_CHECK]; 
 unsigned char lin_cell_voltage[LEN_GET_CELLS];
 unsigned char lin_drain_state[LEN_SET_DRAIN];                                                                              
 								
@@ -31,7 +32,18 @@ volatile unsigned char lin_addr;
 volatile unsigned char lin_slave_err_nb = 0;                                                                               
 
 //----- F U N C T I O N S -----------------------------------------------                                                                                                  
-																														   
+		
+//.......................................................................                                                                        
+// can_enumerate function of "main.c"                                                                           
+//                                                                                                                         
+//      Checks if the ENUMI pin is pulled up                                                                        
+//.......................................................................  
+uint8_t can_enumerate(void) {
+	//TODO: make it do some junk
+	return 0;
+}
+
+
 //.......................................................................                                                                        
 // lin_id_task function of "lin_slave_example.c"                                                                           
 //                                                                                                                         
@@ -39,9 +51,10 @@ volatile unsigned char lin_slave_err_nb = 0;
 //          the ones that the node must manage.                                                                        
 //.......................................................................                                                                        
 void lin_id_task (void) {
-	lin_id = Lin_get_id()
+	lin_id = Lin_get_id();
 
 	lin_id_enum_check = LIN_ID_ENUM_CHECK | lin_addr;
+	lin_id_enum_check_next = LIN_ID_ENUM_CHECK | (lin_addr + 1);
 	lin_id_get_cells = LIN_ID_ENUM_CHECK | lin_addr;
 
 
@@ -49,24 +62,28 @@ void lin_id_task (void) {
 		case LIN_ID_ENUM_START:  
 			//we are starting enumeration                                                                                   
 			lin_addr = 0;
-			if (canEnumerate()) {
+			if (can_enumerate()) {
 				lin_rx_response(LIN_2X, LEN_ENUM_START);
 			}
 			break;
 
 		case LIN_ID_ENUM_CONTINUE:                                                                                     
 			//if our ENUMI line is high, set our address
-			if (canEnumerate()) {
+			if (can_enumerate()) {
 				lin_rx_response(LIN_2X, LEN_ENUM_START);
 			}
 			break;   
 
 		case lin_id_enum_check:   
 			lin_tx_response(LIN_2X, lin_enum_check_response, LEN_ENUM_CHECK);
-			break;  
+			break; 
+
+		case lin_id_enum_check_next:
+			lin_rx_response(LIN_2X, LEN_ENUM_CHECK);
+			break;
 
 		case lin_id_get_cells:                                                                                     
-			lin_tx_response(LIN_2x, lin_cell_voltage, LEN_GET_CELLS)										   
+			lin_tx_response(LIN_2X, lin_cell_voltage, LEN_GET_CELLS);									   
 			break;
 
 		case LEN_SET_DRAIN:                                                                                     
@@ -90,23 +107,38 @@ void lin_rx_task (void) {
 																														   
 unsigned char l_temp;                                                                                                      
 	
-	char * lin_receive_ptr;
+	unsigned char * lin_receive_ptr;
+
+	lin_id_enum_check_next = LIN_ID_ENUM_CHECK | (lin_addr + 1);
+
 
 	switch (lin_id) {
-		case LIN_ID_ENUM_START
-			lin_receive_ptr = lin_id;
+		case LIN_ID_ENUM_START:
+			lin_receive_ptr = (unsigned char *)&lin_id;
+			enum_output_enable();
 			break;
 
-		case LIN_ID_ENUM_CONTINUE
-			lin_receive_ptr = lin_id;
+		case LIN_ID_ENUM_CONTINUE:
+			lin_receive_ptr = (unsigned char *)&lin_id;
+			enum_output_enable();
 			break;
 
-		case LEN_SET_DRAIN
+		case lin_id_enum_check_next:
+			lin_receive_ptr = lin_enum_check_response_dump;
+			break;
+
+		case LIN_ID_SET_DRAIN:
 			lin_receive_ptr = lin_drain_state;
 			break;
+
+
 	}			
 
-	lin_get_response (lin_receive_ptr);                                                                           
+	lin_get_response (lin_receive_ptr); 
+
+	if (lin_enum_check_response[0] == lin_enum_check_response_dump[0]) {
+		enum_output_disable();
+	}                                                                      
 																												   
 	                                                                                                           
 }                                                                                                                          
@@ -120,9 +152,10 @@ unsigned char l_temp;
 //.......................................................................                                                                        
 void lin_tx_task (void) {
 	//pick the correct 4 bits of the drain status
-	drainStatus =  lin_drain_state[lin_addr >> 1] >> 4*(lin_addr & 0x01) & 0x0F
+	drainStatus =  lin_drain_state[lin_addr >> 1] >> 4*(lin_addr & 0x01) & 0x0F;
 	set_drains(drainStatus);
 	//blocking. only update one at a time to make sure we don't miss any LIN frames
+	//TODO: pass in cell_number as an argument
 	get_cell_voltages(lin_cell_voltage, cell_number);
 }                                                                                                                          
 																														   
@@ -133,7 +166,7 @@ void lin_tx_task (void) {
 //      - If LIN error, increment the node error number                                                            
 //.......................................................................                                                                        
 void lin_err_task (void) {                                                                                                 
-																														   
+	// Change this behavior. Perhaps stop draining.																											   
 	// Global variable update                                                                                      
 	lin_slave_err_nb++;                                                                                            
 }                                                                                                                          
@@ -152,12 +185,9 @@ void lin_err_task (void) {
 //              . Byte[0] = motor status                                                                   
 //              . Byte[1] = node error number                                                              
 //.......................................................................                                                                        
-int main (void) {                                                                                                          
-																														   
-	// Port B setting for motor control
-	DDRB |= 1<<PORTB0; DDRB |= 1<<PORTB1;
-	PORTB &= ~(1<<PORTB0); PORTB &= ~(1<<PORTB1);
+int main (void) {
 
+	init_io();
 	// LIN Initialization
 	lin_init((unsigned char)LIN_2X, ((unsigned short)CONF_LINBRR));
 	
