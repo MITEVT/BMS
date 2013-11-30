@@ -8354,7 +8354,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <part name="R26" library="rcl" deviceset="R-US_" device="R0603"/>
 <part name="R34" library="rcl" deviceset="R-US_" device="R0603"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
-<part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="VDD1" library="supply1" deviceset="VDD" device=""/>
 <part name="VDD2" library="supply1" deviceset="VDD" device=""/>
 <part name="C1" library="resistor" deviceset="C-US" device="025-024X044"/>
@@ -8368,7 +8367,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="C3" library="resistor" deviceset="C-US" device="025-024X044"/>
 <part name="IC3" library="linear-technology" deviceset="LT1021" device="S"/>
-<part name="+3V5" library="supply1" deviceset="+3V3" device=""/>
 <part name="Q2" library="transistor-small-signal" deviceset="BSS123" device=""/>
 <part name="Q1" library="transistor-small-signal" deviceset="BSS123" device=""/>
 <part name="Q4" library="transistor-small-signal" deviceset="BSS123" device=""/>
@@ -8413,7 +8411,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <part name="P+7" library="supply1" deviceset="VCC" device=""/>
 <part name="GND28" library="supply1" deviceset="GNDIO" device=""/>
 <part name="P+8" library="supply1" deviceset="VCC" device=""/>
-<part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
 <part name="JP1" library="jumper" deviceset="JP1E" device=""/>
 <part name="GND29" library="supply1" deviceset="GNDIO" device=""/>
 <part name="GND30" library="supply1" deviceset="GND" device=""/>
@@ -8431,6 +8428,9 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <part name="GND33" library="supply1" deviceset="GNDIO" device=""/>
 <part name="U$1" library="EVT-Eagle-Library" deviceset="LTV-827" device="SMD"/>
 <part name="U$2" library="EVT-Eagle-Library" deviceset="LTV-827" device="SMD"/>
+<part name="P+12" library="supply1" deviceset="+5V" device=""/>
+<part name="P+13" library="supply1" deviceset="+5V" device=""/>
+<part name="P+14" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8499,7 +8499,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <instance part="R26" gate="G$1" x="121.92" y="40.64"/>
 <instance part="R34" gate="G$1" x="142.24" y="40.64"/>
 <instance part="GND15" gate="1" x="-71.12" y="99.06"/>
-<instance part="+3V2" gate="G$1" x="-53.34" y="121.92"/>
 <instance part="VDD1" gate="G$1" x="-88.9" y="121.92"/>
 <instance part="VDD2" gate="G$1" x="-109.22" y="132.08"/>
 <instance part="C1" gate="G$1" x="-81.28" y="109.22"/>
@@ -8513,7 +8512,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <instance part="GND17" gate="1" x="-40.64" y="96.52"/>
 <instance part="C3" gate="G$1" x="-40.64" y="109.22"/>
 <instance part="IC3" gate="G$1" x="-17.78" y="71.12"/>
-<instance part="+3V5" gate="G$1" x="-30.48" y="83.82"/>
 <instance part="Q2" gate="G$1" x="76.2" y="81.28"/>
 <instance part="Q1" gate="G$1" x="76.2" y="114.3"/>
 <instance part="Q4" gate="G$1" x="76.2" y="12.7"/>
@@ -8561,7 +8559,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <instance part="P+7" gate="VCC" x="276.86" y="83.82" rot="R90"/>
 <instance part="GND28" gate="G$1" x="281.94" y="76.2" rot="MR0"/>
 <instance part="P+8" gate="VCC" x="238.76" y="104.14"/>
-<instance part="+3V7" gate="G$1" x="-50.8" y="83.82"/>
 <instance part="JP1" gate="A" x="-111.76" y="121.92" rot="R90"/>
 <instance part="GND29" gate="G$1" x="241.3" y="35.56" rot="MR0"/>
 <instance part="GND30" gate="1" x="213.36" y="22.86" rot="MR0"/>
@@ -8587,6 +8584,9 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <instance part="U$1" gate="G$1" x="226.06" y="-2.54" rot="R270"/>
 <instance part="U$2" gate="G$2" x="226.06" y="139.7" rot="MR270"/>
 <instance part="U$2" gate="G$1" x="226.06" y="45.72" rot="MR270"/>
+<instance part="P+12" gate="1" x="-30.48" y="83.82"/>
+<instance part="P+13" gate="1" x="-50.8" y="83.82"/>
+<instance part="P+14" gate="1" x="-53.34" y="121.92"/>
 </instances>
 <busses>
 </busses>
@@ -8672,7 +8672,7 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <label x="114.3" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="GND" class="0">
+<net name="IOGND" class="0">
 <segment>
 <wire x1="-109.22" y1="60.96" x2="-109.22" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
@@ -9192,16 +9192,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 </net>
 <net name="+3V3" class="0">
 <segment>
-<wire x1="-60.96" y1="114.3" x2="-58.42" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="+3V2" gate="G$1" pin="+3V3"/>
-<wire x1="-58.42" y1="114.3" x2="-53.34" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="-53.34" y1="114.3" x2="-53.34" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="-58.42" y1="114.3" x2="-58.42" y2="111.76" width="0.1524" layer="91"/>
-<junction x="-58.42" y="114.3"/>
-<pinref part="IC1" gate="G$1" pin="VO"/>
-</segment>
-<segment>
 <pinref part="+3V3" gate="G$1" pin="+3V3"/>
 <pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="-30.48" y1="114.3" x2="-30.48" y2="111.76" width="0.1524" layer="91"/>
@@ -9212,12 +9202,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <wire x1="-40.64" y1="114.3" x2="-40.64" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="+3V5" gate="G$1" pin="+3V3"/>
-<wire x1="-30.48" y1="81.28" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="IC3" gate="G$1" pin="IN"/>
-<wire x1="-30.48" y1="73.66" x2="-27.94" y2="73.66" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="+3V1" gate="G$1" pin="+3V3"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="-20.32" y1="114.3" x2="-20.32" y2="111.76" width="0.1524" layer="91"/>
@@ -9226,12 +9210,6 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <pinref part="+3V6" gate="G$1" pin="+3V3"/>
 <pinref part="C6" gate="G$1" pin="1"/>
 <wire x1="-10.16" y1="114.3" x2="-10.16" y2="111.76" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="J1" gate="G$1" pin="2"/>
-<wire x1="-55.88" y1="78.74" x2="-50.8" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="+3V7" gate="G$1" pin="+3V3"/>
-<wire x1="-50.8" y1="81.28" x2="-50.8" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VDD" class="0">
@@ -9347,6 +9325,28 @@ Source: http://www.molex.com/product/micro/87438.html</description>
 <pinref part="P+9" gate="1" pin="+5V"/>
 <wire x1="215.9" y1="55.88" x2="215.9" y2="50.8" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="CO"/>
+</segment>
+<segment>
+<wire x1="-30.48" y1="81.28" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="IC3" gate="G$1" pin="IN"/>
+<wire x1="-30.48" y1="73.66" x2="-27.94" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="P+12" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="2"/>
+<wire x1="-55.88" y1="78.74" x2="-50.8" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-50.8" y1="81.28" x2="-50.8" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="P+13" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<wire x1="-60.96" y1="114.3" x2="-58.42" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="114.3" x2="-53.34" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-53.34" y1="114.3" x2="-53.34" y2="119.38" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="-58.42" y1="114.3" x2="-58.42" y2="111.76" width="0.1524" layer="91"/>
+<junction x="-58.42" y="114.3"/>
+<pinref part="IC1" gate="G$1" pin="VO"/>
+<pinref part="P+14" gate="1" pin="+5V"/>
 </segment>
 </net>
 <net name="TX" class="0">
